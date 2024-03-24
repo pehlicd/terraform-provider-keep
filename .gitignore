@@ -24,6 +24,7 @@
 
 !Makefile
 !.goreleaser.yml
+!.pre-commit-config.yaml
 
 # ...even if they are in subdirectories
 !*/

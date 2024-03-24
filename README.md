@@ -2,7 +2,7 @@
 
 [![docs](https://img.shields.io/static/v1?label=docs&message=terraform&color=informational&style=for-the-badge&logo=terraform)](https://registry.terraform.io/providers/pehlicd/keep/latest/docs)
 ![downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.terraform.io%2Fv2%2Fproviders%2Fpehlicd%2Fkeep%3Finclude%3Dcategories%2Cmoved-to%2Cpotential-fork-of%2Cprovider-versions%2Ctop-modules%26include%3Dcategories%252Cmoved-to%252Cpotential-fork-of%252Cprovider-versions%252Ctop-modules%26name%3Dkeep%26namespace%3Dpehlicd&query=data.attributes.downloads&style=for-the-badge&logo=terraform&label=downloads&color=brightgreen)
-![latest version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.terraform.io%2Fv2%2Fprovider-versions%2F51177%3Finclude%3Dprovider-docs%252Chas-cdktf-docs&query=data.attributes.version&style=for-the-badge&logo=terraform&label=latest%20version&color=orange)
+![latest version](https://img.shields.io/github/v/release/pehlicd/terraform-provider-keep?style=for-the-badge&label=latest%20version&color=orange)
 
 This is a terraform provider for managing your [keep](https://github.com/keephq/keep).
 
