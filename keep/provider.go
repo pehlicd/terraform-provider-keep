@@ -27,6 +27,7 @@ func Provider() *schema.Provider {
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"keep_workflow": dataSourceWorkflows(),
+			"keep_mapping":  dataSourceMapping(),
 		},
 		ConfigureContextFunc: ClientConfigurer,
 	}
