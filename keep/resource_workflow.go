@@ -12,7 +12,7 @@ import (
 	"os"
 )
 
-func resourceWorkflows() *schema.Resource {
+func resourceWorkflow() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceCreateWorkflow,
 		ReadContext:   resourceReadWorkflow,

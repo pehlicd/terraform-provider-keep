@@ -22,8 +22,9 @@ func Provider() *schema.Provider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"keep_workflows": resourceWorkflows(),
-			"keep_mapping":   resourceMapping(),
+			"keep_provider": resourceProvider(),
+			"keep_workflow": resourceWorkflow(),
+			"keep_mapping":  resourceMapping(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"keep_workflow": dataSourceWorkflows(),
