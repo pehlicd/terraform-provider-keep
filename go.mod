@@ -1,6 +1,6 @@
 module github.com/pehlicd/terraform-provider-keep
 
-go 1.22
+go 1.22.1
 
 require github.com/hashicorp/terraform-plugin-sdk/v2 v2.33.0
 
