@@ -27,7 +27,7 @@ terraform {
 
 ```hcl
 provider "keep" {
-  url = "http://localhost:8080" # or use environment variable KEEP_BACKEND_URL
+  backend_url = "http://localhost:8080" # or use environment variable KEEP_BACKEND_URL
   api_key = "your apikey" # or use environment variable KEEP_API_KEY
 }
 
