@@ -132,6 +132,7 @@ func resourceReadWorkflow(ctx context.Context, d *schema.ResourceData, m interfa
 	// check if workflow exists
 	for _, workflow := range response {
 		if workflow["id"] == id {
+			d.SetId(id)
 			return nil
 		}
 	}

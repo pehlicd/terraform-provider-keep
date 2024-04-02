@@ -178,17 +178,12 @@ func resourceReadProvider(ctx context.Context, d *schema.ResourceData, m interfa
 	}
 
 	// set id
-	d.SetId(response["id"].(string))
+	d.SetId(id)
 
 	return nil
 }
 
 func resourceUpdateProvider(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
-	//curl 'http://keep:3000/backend/providers/c23bde5442774fd2947fd9d2268e6144' \
-	//-X 'PUT' \
-	//--data-raw '{"provider_id":"c23bde5442774fd2947fd9d2268e6144","provider_name":"sq-test","refresh_token":"3096d5acc95e7a50168ecafd091f92254cf02b47519fc1865e35f77d157d09cf53ccec738af669e763eead24993dd82536d43346a53cad9ab463a54d47d5a6dd","service_region":"EU","webhook_url":"https://api.eu.squadcast.com/v2/incidents/api/53bd08ea0cd788081dc6d03ad942b83c2973a85c"}' \
-	//--insecure
-
 	client := m.(*Client)
 	id := d.Id()
 	providerType := d.Get("type").(string)

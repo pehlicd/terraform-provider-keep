@@ -130,9 +130,7 @@ func resourceCreateMapping(ctx context.Context, d *schema.ResourceData, m interf
 		return diag.Errorf("cannot unmarshal response: %s", err)
 	}
 
-	id := response["id"].(float64)
-	idStr := int(id)
-	d.SetId(strconv.Itoa(idStr))
+	d.SetId(d.Id())
 
 	return nil
 }
