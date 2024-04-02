@@ -115,6 +115,9 @@ func resourceCreateProvider(ctx context.Context, d *schema.ResourceData, m inter
 	if err != nil {
 		return diag.Errorf("cannot parse response: %s", err)
 	}
+	if response == nil {
+		return diag.Errorf("couldn't create provider properly, response is nil")
+	}
 
 	// Set the ID
 	d.SetId(response["id"].(string))
@@ -173,12 +176,10 @@ func resourceReadProvider(ctx context.Context, d *schema.ResourceData, m interfa
 		if provider.(map[string]interface{})["id"] == id {
 			// provider exists
 			// in the future we can set the provider data here
+			d.SetId(id)
 			return nil
 		}
 	}
-
-	// set id
-	d.SetId(id)
 
 	return nil
 }
