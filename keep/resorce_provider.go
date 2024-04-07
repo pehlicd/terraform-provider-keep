@@ -153,7 +153,7 @@ func resourceReadProvider(ctx context.Context, d *schema.ResourceData, m interfa
 	id := d.Id()
 
 	// create new request
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/providers/", client.HostURL), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/providers/export", client.HostURL), nil)
 	if err != nil {
 		return diag.Errorf("cannot create request: %s", err)
 	}
@@ -172,11 +172,17 @@ func resourceReadProvider(ctx context.Context, d *schema.ResourceData, m interfa
 	}
 
 	installedProviders := response["installed_providers"].([]interface{})
+	if len(installedProviders) == 0 {
+		// no providers installed
+		return nil
+	}
+
 	for _, provider := range installedProviders {
 		if provider.(map[string]interface{})["id"] == id {
-			// provider exists
-			// in the future we can set the provider data here
-			d.SetId(id)
+			// provider found
+			d.Set("type", provider.(map[string]interface{})["type"])
+			d.Set("name", provider.(map[string]interface{})["name"])
+			d.Set("auth_config", provider.(map[string]interface{})["config"])
 			return nil
 		}
 	}
