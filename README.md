@@ -46,6 +46,7 @@ resource "keep_mapping" "example_mapping" {
   matchers = [
     "your unique matcher",
   ]
+  #priority = 1 (optional)
 }
 
 resource "keep_provider" "example_provider" {
