@@ -21,6 +21,10 @@ description: |-
 - `name` (String) Name of the keep provider
 - `type` (String) Type of the keep provider
 
+### Optional
+
+- `install_webhook` (Boolean) Install webhook for the provider (default: false)
+
 ### Read-Only
 
 - `id` (String) The ID of this resource.
