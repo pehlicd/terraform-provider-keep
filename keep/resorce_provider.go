@@ -35,6 +35,12 @@ func resourceProvider() *schema.Resource {
 				Required:    true,
 				Description: "Configuration of the keep provider authentication",
 			},
+			"install_webhook": {
+				Type:        schema.TypeBool,
+				Optional:    true,
+				Default:     false,
+				Description: "Install webhook for the provider (default: false)",
+			},
 		},
 	}
 }
@@ -117,6 +123,20 @@ func resourceCreateProvider(ctx context.Context, d *schema.ResourceData, m inter
 	}
 	if response == nil {
 		return diag.Errorf("couldn't create provider properly, response is nil")
+	}
+
+	if d.Get("install_webhook").(bool) {
+		// Create a new request
+		req, err = http.NewRequest("POST", fmt.Sprintf("%s/providers/install/webhook/%s/%s", client.HostURL, providerType, response["id"].(string)), nil)
+		if err != nil {
+			return diag.Errorf("cannot create request: %s", err)
+		}
+
+		// Do the request
+		_, err := client.doReq(req)
+		if err != nil {
+			return diag.Errorf("cannot send request: %s", err)
+		}
 	}
 
 	// Set the ID

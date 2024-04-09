@@ -15,6 +15,7 @@ resource "keep_provider" "prometheus" {
     +------------+--------------+----------+-----------------------+
     */
   }
+  #install_webhook = true (optional)
 }
 
 resource "keep_workflow" "example_workflow" {

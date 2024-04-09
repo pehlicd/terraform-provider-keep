@@ -57,6 +57,7 @@ resource "keep_provider" "example_provider" {
     // Add your provider specific configuration
     //...
   }
+  #install_webhook = true (optional)
 }
 
 data "keep_workflow" "example_workflow_data" {
