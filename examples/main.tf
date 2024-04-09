@@ -27,6 +27,7 @@ resource "keep_mapping" "example_mapping" {
   matchers = [
     "your unique matcher",
   ]
+  #priority = 1 (optional)
 }
 
 output "keep_provider_id" {
