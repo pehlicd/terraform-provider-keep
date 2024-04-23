@@ -167,11 +167,9 @@ func resourceReadMapping(ctx context.Context, d *schema.ResourceData, m interfac
 
 	for _, mapping := range response {
 		if mapping["id"] == idFloat {
-			d.Set("id", id)
+			d.SetId(id)
 			d.Set("name", mapping["name"])
 			d.Set("description", mapping["description"])
-			d.Set("matchers", mapping["matchers"])
-			d.Set("priority", mapping["priority"])
 			break
 		}
 	}
