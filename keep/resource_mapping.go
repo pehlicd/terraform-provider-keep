@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/csv"
 	"encoding/json"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"net/http"
@@ -137,7 +138,7 @@ func resourceCreateMapping(ctx context.Context, d *schema.ResourceData, m interf
 		return diag.Errorf("cannot unmarshal response: %s", err)
 	}
 
-	d.SetId(response["id"].(string))
+	d.SetId(fmt.Sprintf("%f", response["id"]))
 
 	return nil
 }
