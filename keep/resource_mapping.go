@@ -27,7 +27,6 @@ func resourceMapping() *schema.Resource {
 			"id": {
 				Type:        schema.TypeString,
 				Computed:    true,
-				Optional:    false,
 				Description: "ID of the mapping",
 			},
 			"name": {
@@ -139,6 +138,7 @@ func resourceCreateMapping(ctx context.Context, d *schema.ResourceData, m interf
 	}
 
 	d.SetId(fmt.Sprintf("%f", response["id"]))
+	d.Set("id", fmt.Sprintf("%f", response["id"]))
 
 	return nil
 }
@@ -164,10 +164,6 @@ func resourceReadMapping(ctx context.Context, d *schema.ResourceData, m interfac
 		return diag.Errorf("cannot unmarshal response: %s", err)
 	}
 
-	if len(response) == 0 {
-		return diag.Errorf("no mapping found")
-	}
-
 	idFloat, err := strconv.ParseFloat(id, 64)
 	if err != nil {
 		return diag.Errorf("cannot parse id: %s", err)
@@ -176,6 +172,11 @@ func resourceReadMapping(ctx context.Context, d *schema.ResourceData, m interfac
 	for _, mapping := range response {
 		if mapping["id"] == idFloat {
 			d.SetId(id)
+			d.Set("name", mapping["name"])
+			d.Set("description", mapping["description"])
+			d.Set("matchers", mapping["matchers"])
+			d.Set("priority", mapping["priority"])
+			d.Set("file_name", mapping["file_name"])
 			break
 		}
 	}
@@ -301,6 +302,7 @@ func resourceUpdateMapping(ctx context.Context, d *schema.ResourceData, m interf
 			}
 
 			d.SetId(response["id"].(string))
+			d.Set("id", response["id"].(string))
 			break
 		}
 	}
