@@ -223,6 +223,10 @@ func resourceUpdateProvider(ctx context.Context, d *schema.ResourceData, m inter
 		"provider_name": providerName,
 	}
 
+	if !d.HasChange("auth_config") || !d.HasChange("name") {
+		return nil
+	}
+
 	// Add the auth config to the payload
 	for key, value := range authConfig {
 		providerUpdatePayload[key] = value
