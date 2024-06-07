@@ -115,7 +115,7 @@ func resourceCreateMapping(ctx context.Context, d *schema.ResourceData, m interf
 	// marshal body
 	bodyBytes, err := json.Marshal(body)
 	if err != nil {
-		return diag.Errorf("cannot request marshal body: %s", err)
+		return diag.Errorf("cannot marshal mapping body: %s", err)
 	}
 
 	// create mapping
