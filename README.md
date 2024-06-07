@@ -1,5 +1,5 @@
 <picture>
-  <img align="right" height="54" src="https://assets-global.website-files.com/651fbba3d2d2f809dffbe9c5/6524099c11a532d90a7576c2_Keep%20Logo.png">
+  <img align="right" height="54" src="assets/keep-logo.png">
 </picture>
 
 # terraform-provider-keep

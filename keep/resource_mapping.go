@@ -48,7 +48,7 @@ func resourceMapping() *schema.Resource {
 			},
 			"priority": {
 				Type:        schema.TypeInt,
-				Optional:    true,
+				Required:    true,
 				Description: "Priority of the mapping",
 			},
 			"mapping_file_path": {
