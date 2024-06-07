@@ -20,12 +20,12 @@ description: |-
 - `mapping_file_path` (String) Path of the mapping file
 - `matchers` (Set of String) List of matchers
 - `name` (String) Name of the mapping
+- `priority` (Number) Priority of the mapping
 
 ### Optional
 
 - `description` (String) Description of the mapping
-- `priority` (Number) Priority of the mapping
 
 ### Read-Only
 
-- `id` (String) The ID of this resource.
+- `id` (String) ID of the mapping
