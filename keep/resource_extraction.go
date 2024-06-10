@@ -56,7 +56,7 @@ func resourceExtraction() *schema.Resource {
 			},
 			"disabled": {
 				Type:     schema.TypeBool,
-				Required: true,
+				Optional: true,
 				Default:  false,
 			},
 			"regex": {
