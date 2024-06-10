@@ -66,7 +66,7 @@ func resourceExtraction() *schema.Resource {
 			},
 			"pre": {
 				Type:        schema.TypeBool,
-				Required:    true,
+				Optional:    true,
 				Default:     false,
 				Description: "Pre of the extraction",
 			},

@@ -48,7 +48,7 @@ func resourceMapping() *schema.Resource {
 			},
 			"priority": {
 				Type:        schema.TypeInt,
-				Required:    true,
+				Optional:    true,
 				Description: "Priority of the mapping",
 				Default:     0,
 			},
