@@ -140,8 +140,13 @@ func resourceCreateProvider(ctx context.Context, d *schema.ResourceData, m inter
 	}
 
 	// Set the ID
-	d.SetId(response["id"].(string))
+	id := response["id"].(string)
+	d.SetId(id)
+	d.Set("id", id)
 	d.Set("type", providerType)
+	d.Set("name", providerName)
+	d.Set("auth_config", authConfigs)
+	d.Set("install_webhook", d.Get("install_webhook"))
 
 	return nil
 }
@@ -200,8 +205,8 @@ func resourceReadProvider(ctx context.Context, d *schema.ResourceData, m interfa
 	for _, provider := range installedProviders {
 		if provider.(map[string]interface{})["id"] == id {
 			// provider found
+			d.SetId(id)
 			d.Set("type", provider.(map[string]interface{})["type"])
-			d.Set("name", provider.(map[string]interface{})["name"])
 			d.Set("auth_config", provider.(map[string]interface{})["config"])
 			return nil
 		}
@@ -223,7 +228,7 @@ func resourceUpdateProvider(ctx context.Context, d *schema.ResourceData, m inter
 		"provider_name": providerName,
 	}
 
-	if !d.HasChange("auth_config") || !d.HasChange("name") {
+	if !d.HasChange("auth_config") || !d.HasChange("name") || !d.HasChange("type") || !d.HasChange("install_webhook") {
 		return nil
 	}
 
