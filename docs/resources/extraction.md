@@ -18,15 +18,15 @@ description: |-
 ### Required
 
 - `attribute` (String) Attribute of the extraction
-- `disabled` (Boolean)
 - `name` (String) Name of the extraction
-- `pre` (Boolean) Pre of the extraction
 - `regex` (String) Regex of the extraction
 
 ### Optional
 
 - `condition` (String) Condition of the extraction
 - `description` (String) Description of the extraction
+- `disabled` (Boolean)
+- `pre` (Boolean) Pre of the extraction
 - `priority` (Number) Priority of the extraction
 
 ### Read-Only

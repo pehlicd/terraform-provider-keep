@@ -20,6 +20,13 @@ func Provider() *schema.Provider {
 				Description: "Keep API Key",
 				DefaultFunc: schema.EnvDefaultFunc("KEEP_API_KEY", nil),
 			},
+			"timeout": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "Timeout duration for the http client. Default is 30 seconds (30s).",
+				Default:     "30s",
+				DefaultFunc: schema.EnvDefaultFunc("KEEP_TIMEOUT", "30s"),
+			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"keep_provider":   resourceProvider(),

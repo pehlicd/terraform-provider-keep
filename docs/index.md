@@ -19,3 +19,7 @@ description: |-
 
 - `api_key` (String) Keep API Key
 - `backend_url` (String) Keep backend url
+
+### Optional
+
+- `timeout` (String) Timeout duration for the http client. Default is 30 seconds (30s).
