@@ -28,4 +28,4 @@ description: |-
 
 ### Read-Only
 
-- `id` (String) ID of the mapping
+- `id` (String) The ID of this resource.

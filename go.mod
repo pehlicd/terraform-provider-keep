@@ -2,7 +2,10 @@ module github.com/pehlicd/terraform-provider-keep
 
 go 1.22.1
 
-require github.com/hashicorp/terraform-plugin-sdk/v2 v2.33.0
+require (
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.33.0
+	github.com/spf13/cast v1.6.0
+)
 
 require (
 	github.com/agext/levenshtein v1.2.2 // indirect

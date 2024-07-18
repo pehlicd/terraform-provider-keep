@@ -4,14 +4,14 @@ import (
 	"context"
 	"encoding/csv"
 	"encoding/json"
-	"fmt"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"net/http"
 	"os"
 	"reflect"
-	"strconv"
 	"strings"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/spf13/cast"
 )
 
 func resourceMapping() *schema.Resource {
@@ -24,11 +24,6 @@ func resourceMapping() *schema.Resource {
 			StateContext: schema.ImportStatePassthroughContext,
 		},
 		Schema: map[string]*schema.Schema{
-			"id": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Description: "ID of the mapping",
-			},
 			"name": {
 				Type:        schema.TypeString,
 				Required:    true,
@@ -138,8 +133,7 @@ func resourceCreateMapping(ctx context.Context, d *schema.ResourceData, m interf
 		return diag.Errorf("cannot unmarshal response: %s", err)
 	}
 
-	d.SetId(fmt.Sprintf("%f", response["id"]))
-	d.Set("id", fmt.Sprintf("%f", response["id"]))
+	d.SetId(cast.ToString(cast.ToInt(response["id"])))
 
 	return nil
 }
@@ -165,14 +159,11 @@ func resourceReadMapping(ctx context.Context, d *schema.ResourceData, m interfac
 		return diag.Errorf("cannot unmarshal response: %s", err)
 	}
 
-	idFloat, err := strconv.ParseFloat(id, 64)
-	if err != nil {
-		return diag.Errorf("cannot parse id: %s", err)
-	}
+	idInt := cast.ToInt(id)
 
 	for _, mapping := range response {
-		if mapping["id"] == idFloat {
-			d.SetId(id)
+		if mapping["id"] == idInt {
+			d.SetId(cast.ToString(idInt))
 			d.Set("name", mapping["name"])
 			d.Set("description", mapping["description"])
 			d.Set("matchers", mapping["matchers"])
@@ -302,8 +293,7 @@ func resourceUpdateMapping(ctx context.Context, d *schema.ResourceData, m interf
 				return diag.Errorf("cannot unmarshal response: %s", err)
 			}
 
-			d.SetId(response["id"].(string))
-			d.Set("id", response["id"].(string))
+			d.SetId(cast.ToString(cast.ToInt(response["id"])))
 			break
 		}
 	}
