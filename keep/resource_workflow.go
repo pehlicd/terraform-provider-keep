@@ -57,7 +57,7 @@ func resourceCreateWorkflow(ctx context.Context, d *schema.ResourceData, m inter
 	}
 
 	// create new request
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/workflows", client.HostURL), bytes.NewReader(fileContent))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/workflows/json", client.HostURL), bytes.NewReader(fileContent))
 	if err != nil {
 		return diag.Errorf("cannot create request: %s", err)
 	}
